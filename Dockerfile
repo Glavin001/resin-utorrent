@@ -1,6 +1,5 @@
-FROM resin/raspberrypi-node
-ENV INITSYSTEM on
-WORKDIR /usr/src/app
+FROM resin/raspberrypi-node:latest
+MAINTAINER Glavin Wiechert <glavin.wiechert@gmail.com>
 
 # Install more dependencies
 RUN apt-get update && \
@@ -13,6 +12,9 @@ RUN npm install -g coffee-script && \
   npm install -g bower && \
   npm cache clean && \
   rm -rf /tmp/*
+
+# Defines our working directory in container
+WORKDIR /usr/src/app
 
 # Install NPM packages
 COPY package.json ./
@@ -30,5 +32,8 @@ RUN usermod -a -G root debian-transmission
 # Copy the application project
 COPY . ./
 
+# Enable systemd init system in container
+ENV INITSYSTEM on
+
 # Run on device
-CMD /bin/bash start.sh
+CMD ["/bin/bash", "start.sh"]

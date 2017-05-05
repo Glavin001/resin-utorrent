@@ -45,7 +45,7 @@
     "rpc-authentication-required": true,
     "rpc-bind-address": "0.0.0.0",
     "rpc-enabled": true,
-    "rpc-password": "password",
+    "rpc-password": "glavin",
     "rpc-port": 80,
     "rpc-url": "/transmission/",
     "rpc-username": "transmission",
