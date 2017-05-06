@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  resin-torrent-client:
+    container_name: resin-torrent-client
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - /data
+    cap_add:
+      - ALL
+
+networks:
+  default:
+    driver: bridge

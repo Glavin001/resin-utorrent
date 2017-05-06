@@ -15,10 +15,10 @@ COPY transmission_settings.json ./
 RUN usermod -a -G root debian-transmission
 
 # Copy the application project
-COPY . ./
+COPY start.sh ./
 
 # Enable systemd init system in container
-ENV INITSYSTEM on
+# ENV INITSYSTEM on
 
 # Run on device
 CMD ["/bin/bash", "start.sh"]
