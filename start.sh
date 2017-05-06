@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "Starting Torrent Client"
+echo "Initializing"
 
 #===== CUSTOMIZE =====
 # Mount network shared drive
 MOUNT_FOLDER="Public"
-MOUNT_SOURCE="//192.168.1.13/$MOUNT_FOLDER"
+MOUNT_HOST="192.168.1.13"
+MOUNT_SOURCE="//$MOUNT_HOST/$MOUNT_FOLDER"
 MOUNT_DEST="/data/mount/$MOUNT_FOLDER"
 mkdir -p "$MOUNT_DEST"
 echo "Mounting $MOUNT_SOURCE to $MOUNT_DEST"
@@ -35,9 +36,9 @@ else
 fi
 
 # Start transmission
+echo "Starting Transmission-daemon"
 transmission-daemon \
     --config-dir "$TRANSMISSION_CONFIG_DIR" \
     --logfile "$TRANSMISSION_LOGS_PATH" \
     --foreground
-
 echo "Transmission-daemon has stopped"
